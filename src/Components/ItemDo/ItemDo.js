@@ -1,19 +1,18 @@
 import style from "./ItemDo.module.css";
 import { ImCog, ImCheckmark2, ImCross } from "react-icons/im";
 
-export const ItemDo = ({ item, updateStatusDo, updateTextDo, deleteDo }) => {
-  console.log(item.status);
-  const updeteText = id => {
-    const text = prompt("Введите дело");
-    updateTextDo(id, text);
-  };
+export const ItemDo = ({ openModal, item, updateStatusDo, deleteDo }) => {
+  console.log(item.todo);
 
   return (
     <div className={style.item}>
       <div className={style.item__text}>
         <h3 className={style.p}> {item.todo} </h3>{" "}
         <div className={style.icons}>
-          <ImCog className={style.icon} onClick={() => updeteText(item.id)} />{" "}
+          <ImCog
+            className={style.icon}
+            onClick={() => openModal(item.id, item.todo)}
+          />{" "}
           {!item.status && (
             <ImCheckmark2
               className={style.icon}
