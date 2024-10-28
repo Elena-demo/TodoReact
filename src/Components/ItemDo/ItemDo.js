@@ -7,13 +7,13 @@ export const ItemDo = ({ openModal, item, updateStatusDo, deleteDo }) => {
   return (
     <div className={style.item}>
       <div className={style.item__text}>
-        <h3 className={style.p}> {item.todo} </h3>{" "}
+        <h3 className={style.p}> {item.title} </h3>{" "}
         <div className={style.icons}>
           <ImCog
             className={style.icon}
-            onClick={() => openModal(item.id, item.todo)}
+            onClick={() => openModal(item.id, item.title)}
           />{" "}
-          {!item.status && (
+          {!item.completed && (
             <ImCheckmark2
               className={style.icon}
               onClick={() => updateStatusDo(item.id)}

@@ -8,8 +8,10 @@ import { GetTodo } from "./Fetch/GetTodo/GetTodo";
 
 function App() {
   async function getTodoServer(params) {
-    const getTodo = await GetTodo();
-    console.log(getTodo);
+    const todoArr = await GetTodo();
+    console.log(todoArr.slice(0, 10));
+    setTodos(todoArr.slice(0, 10));
+    console.log(todos);
   }
   getTodoServer();
   const [todos, setTodos] = useState([
