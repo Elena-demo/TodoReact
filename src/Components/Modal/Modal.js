@@ -12,23 +12,31 @@ export function Modal({ modal, text, updateTextDo }) {
   };
 
   return (
-    <div className={modal ? style.show : style.modal}>
-      <div className={style.modal_window}>
-        {" "}
-        Отредактируйте Ваше дело{" "}
-        <input
-          value={inputText}
-          onChange={e =>
-            e.target.value
-              ? setInputText(e.target.value)
-              : alert("Вы ничего не ввели!")
-          }
-        />{" "}
-        <div className={style.btn_close}>
-          <ImCross onClick={modalClose} />{" "}
+    <form
+      onSubmit={e => {
+        e.preventDefault();
+        setInputText(e.target.value);
+        modalClose();
+      }}
+    >
+      <div className={modal ? style.show : style.modal}>
+        <div className={style.modal_window}>
+          {" "}
+          Отредактируйте Ваше дело{" "}
+          <input
+            value={inputText}
+            onChange={e =>
+              e.target.value
+                ? setInputText(e.target.value)
+                : alert("Вы ничего не ввели!")
+            }
+          />{" "}
+          <div className={style.btn_close}>
+            <ImCross onClick={modalClose} />{" "}
+          </div>{" "}
         </div>{" "}
+        <div className={style.modal_overlay}> </div>{" "}
       </div>{" "}
-      <div className={style.modal_overlay}> </div>{" "}
-    </div>
+    </form>
   );
 }

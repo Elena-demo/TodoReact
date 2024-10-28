@@ -4,8 +4,14 @@ import "./App.css";
 import { Form } from "./Components/Form/Form";
 import { ItemDo } from "./Components/ItemDo/ItemDo";
 import { Modal } from "./Components/Modal/Modal";
+import { GetTodo } from "./Fetch/GetTodo/GetTodo";
 
 function App() {
+  async function getTodoServer(params) {
+    const getTodo = await GetTodo();
+    console.log(getTodo);
+  }
+  getTodoServer();
   const [todos, setTodos] = useState([
     {
       id: 0,
@@ -25,7 +31,7 @@ function App() {
   ]);
   const [modal, setModal] = useState(false);
 
-  const [textModal, setTextModal] = useState("222222222222");
+  const [textModal, setTextModal] = useState("");
   const [idModal, setIdModal] = useState(0);
 
   let openModal = (id, todo) => {
@@ -75,11 +81,20 @@ function App() {
             openModal={openModal}
             updateStatusDo={updateStatusDo}
             item={item}
+            key={item.id}
             deleteDo={deleteDo}
           />
         ))
       )}{" "}
-      <Modal modal={modal} text={textModal} updateTextDo={updateTextDo} />{" "}
+      {modal && (
+        <Modal
+          modal={modal}
+          text={textModal}
+          updateTextDo={updateTextDo}
+          // key={textModal}
+        />
+      )}{" "}
+      {/* <GetTodo /> */}{" "}
     </div>
   );
 }
